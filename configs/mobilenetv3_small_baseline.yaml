@@ -1,0 +1,56 @@
+# MobileNetV3-Small + DeepLabV3+ 基线实验
+experiment_name: mobilenetv3_small_deeplabv3plus_baseline
+
+# 模型配置
+model:
+  backbone:
+    name: mobilenetv3_small
+    pretrained: false
+    freeze_bn: false
+    rein_insertion_points: []  # 不使用Rein机制
+    rein_config: {}
+
+  head:
+    name: deeplabv3plus
+    num_classes: 21
+    dropout_ratio: 0.1
+    aspp_dilate: [12, 24, 36]
+    aspp_out_channels: 256
+    low_level_channels_project: 48
+
+  aux_head:
+    enabled: false
+
+# 数据配置
+data:
+  root_dir: "/path/to/voc2012"  # 请修改为实际路径
+  image_size: [512, 512]
+  ignore_index: 255
+
+# 训练配置
+training:
+  epochs: 100
+  batch_size: 8
+
+  optimizer:
+    name: sgd
+    lr: 0.01
+    momentum: 0.9
+    weight_decay: 1e-4
+
+  scheduler:
+    name: step
+    step_size: 30
+    gamma: 0.1
+
+  loss:
+    types: [cross_entropy]
+    weights: [1.0]
+
+  aux_weight: 0.4
+  use_amp: true  # 混合精度训练
+
+# 其他配置
+num_classes: 21
+save_best_only: true
+patience: 10

@@ -1,0 +1,21 @@
+2025-06-19 18:13:27 - ./experiments\quick_test_20250619_181327\logs\train.log - INFO - Starting experiment: quick_test
+2025-06-19 18:13:27 - ./experiments\quick_test_20250619_181327\logs\train.log - INFO - Experiment directory: ./experiments\quick_test_20250619_181327
+2025-06-19 18:13:27 - ./experiments\quick_test_20250619_181327\logs\train.log - INFO - Device: cuda
+2025-06-19 18:13:27 - ./experiments\quick_test_20250619_181327\logs\train.log - INFO - Config saved to: ./experiments\quick_test_20250619_181327\configs\config.yaml
+2025-06-19 18:13:27 - ./experiments\quick_test_20250619_181327\logs\train.log - INFO - Creating trainer...
+2025-06-19 18:13:27 - ./experiments\quick_test_20250619_181327\logs\train.log - INFO - Training for 3 epochs (starting from epoch 0)
+2025-06-19 18:13:27 - ./experiments\quick_test_20250619_181327\logs\train.log - INFO - Starting training for 3 epochs
+2025-06-19 18:13:27 - ./experiments\quick_test_20250619_181327\logs\train.log - INFO - Device: cuda
+2025-06-19 18:13:27 - ./experiments\quick_test_20250619_181327\logs\train.log - INFO - Model parameters: 6.41M
+2025-06-19 18:13:37 - ./experiments\quick_test_20250619_181327\logs\train.log - INFO - Epoch 0: Train Loss: 5.4532, Train mIoU: 0.0222, Val Loss: 3.2691, Val mIoU: 0.0132, Time: 10.60s
+2025-06-19 18:13:37 - ./experiments\quick_test_20250619_181327\logs\train.log - INFO - Saved best model with mIoU: 0.0132
+2025-06-19 18:13:48 - ./experiments\quick_test_20250619_181327\logs\train.log - INFO - Epoch 1: Train Loss: 4.0591, Train mIoU: 0.0239, Val Loss: 3.1876, Val mIoU: 0.0156, Time: 10.97s
+2025-06-19 18:13:48 - ./experiments\quick_test_20250619_181327\logs\train.log - INFO - Saved best model with mIoU: 0.0156
+2025-06-19 18:14:01 - ./experiments\quick_test_20250619_181327\logs\train.log - INFO - Epoch 2: Train Loss: 3.3894, Train mIoU: 0.0228, Val Loss: 3.0864, Val mIoU: 0.0165, Time: 12.29s
+2025-06-19 18:14:01 - ./experiments\quick_test_20250619_181327\logs\train.log - INFO - Saved best model with mIoU: 0.0165
+2025-06-19 18:14:01 - ./experiments\quick_test_20250619_181327\logs\train.log - INFO - Training completed. Best mIoU: 0.0165
+2025-06-19 18:14:01 - ./experiments\quick_test_20250619_181327\logs\train.log - INFO - Training history saved to: ./experiments\quick_test_20250619_181327\results\training_history.yaml
+2025-06-19 18:14:01 - ./experiments\quick_test_20250619_181327\logs\train.log - INFO - Experiment summary saved to: ./experiments\quick_test_20250619_181327\results\experiment_summary.yaml
+2025-06-19 18:14:01 - ./experiments\quick_test_20250619_181327\logs\train.log - INFO - Experiment completed successfully!
+2025-06-19 18:14:01 - ./experiments\quick_test_20250619_181327\logs\train.log - INFO - Best mIoU: 0.0165
+2025-06-19 18:14:01 - ./experiments\quick_test_20250619_181327\logs\train.log - INFO - Comparison table updated: ./experiments\quick_test_20250619_181327\results\comparison_table.md

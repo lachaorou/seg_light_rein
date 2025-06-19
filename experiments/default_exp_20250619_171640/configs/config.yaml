@@ -1,0 +1,52 @@
+aux_head:
+  enabled: false
+backbone:
+  name: mobilenetv3_small
+  output_stride: 16
+  pretrained: false
+data:
+  augmentation:
+    horizontal_flip: true
+    random_crop: true
+    random_scale:
+    - 0.8
+    - 1.2
+  batch_size: 8
+  dataset: voc2012
+  image_size:
+  - 256
+  - 256
+  num_workers: 2
+  root: /nonexistent/path
+evaluation:
+  eval_interval: 1
+  metrics:
+  - miou
+  - pixel_accuracy
+  save_best: true
+experiment:
+  description: 快速验证系统功能的小规模实验
+  name: quick_test
+  tags:
+  - test
+  - mobilenetv3
+  - baseline
+head:
+  dropout_ratio: 0.1
+  name: deeplabv3plus
+  num_classes: 21
+logging:
+  log_interval: 10
+  save_checkpoint_interval: 2
+training:
+  epochs: 5
+  gradient_clip: 1.0
+  learning_rate: 0.001
+  loss:
+    ignore_index: 255
+    type: cross_entropy
+  lr_scheduler: poly
+  mixed_precision: true
+  momentum: 0.9
+  optimizer: adamw
+  weight_decay: 0.0001

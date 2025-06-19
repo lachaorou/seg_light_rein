@@ -1,0 +1,47 @@
+# 多数据集实验配置 - Cityscapes高精度测试
+dataset:
+  type: cityscapes
+  root_dir: ./datasets/Cityscapes
+  split: train
+  image_size: [1024, 512]
+  transforms: strong
+  batch_size: 8
+  num_workers: 4
+
+model:
+  backbone: mobilenetv3_large
+  head: deeplabv3plus
+  mechanisms: [rein]
+  num_classes: 19
+  pretrained: true
+
+  # Rein机制配置
+  rein_config:
+    insertion_points: [3, 7, 11, 15]
+    rank: 128
+
+training:
+  epochs: 100
+  learning_rate: 0.0001
+  optimizer: adamw
+  scheduler: polynomial
+  warmup_epochs: 10
+  loss_functions:
+    - name: cross_entropy
+      weight: 0.7
+    - name: focal_loss
+      weight: 0.3
+      alpha: 0.25
+      gamma: 2.0
+  mixed_precision: true
+  save_interval: 20
+
+evaluation:
+  metrics: [miou, pixel_accuracy, class_accuracy, category_iou]
+  save_predictions: true
+  prediction_interval: 20
+
+experiment:
+  name: cityscapes_precision_test
+  description: "Cityscapes高精度测试实验 - 追求最高精度和细节优化"
+  tags: [precision_test, cityscapes, mobilenetv3_large, rein, high_res]

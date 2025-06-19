@@ -1,0 +1,14 @@
+2025-06-19 17:16:41 - ./experiments\default_exp_20250619_171640\logs\train.log - INFO - Starting experiment: default_exp
+2025-06-19 17:16:41 - ./experiments\default_exp_20250619_171640\logs\train.log - INFO - Experiment directory: ./experiments\default_exp_20250619_171640
+2025-06-19 17:16:41 - ./experiments\default_exp_20250619_171640\logs\train.log - INFO - Device: cuda
+2025-06-19 17:16:41 - ./experiments\default_exp_20250619_171640\logs\train.log - INFO - Config saved to: ./experiments\default_exp_20250619_171640\configs\config.yaml
+2025-06-19 17:16:41 - ./experiments\default_exp_20250619_171640\logs\train.log - INFO - Creating trainer...
+2025-06-19 17:16:41 - ./experiments\default_exp_20250619_171640\logs\train.log - ERROR - Training failed with error: 'model'
+2025-06-19 17:16:41 - ./experiments\default_exp_20250619_171640\logs\train.log - ERROR - Traceback (most recent call last):
+  File "E:\seg_light_rein\train_complete.py", line 246, in main
+    trainer = create_trainer(config)
+  File "E:\seg_light_rein\training\advanced_trainer.py", line 481, in create_trainer
+    model = build_segmentation_model(config['model'])
+KeyError: 'model'
+
+2025-06-19 17:16:41 - ./experiments\default_exp_20250619_171640\logs\train.log - INFO - Comparison table updated: ./experiments\default_exp_20250619_171640\results\comparison_table.md

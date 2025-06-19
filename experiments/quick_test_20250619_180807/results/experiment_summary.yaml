@@ -1,0 +1,81 @@
+best_miou: !!python/object/apply:numpy.core.multiarray.scalar
+- !!python/object/apply:numpy.dtype
+  args:
+  - f8
+  - false
+  - true
+  state: !!python/tuple
+  - 3
+  - <
+  - null
+  - null
+  - null
+  - -1
+  - -1
+  - 0
+- !!binary |
+  9fy0QzT+kT8=
+config:
+  data:
+    ignore_index: 255
+    image_size:
+    - 256
+    - 256
+    root_dir: /nonexistent/path
+  evaluation:
+    eval_interval: 1
+    save_best: true
+  experiment_name: quick_test
+  logging:
+    log_interval: 10
+    save_interval: 1
+  model:
+    aux_head:
+      enabled: false
+    backbone:
+      freeze_bn: false
+      name: mobilenetv3_small
+      pretrained: false
+      rein_config: {}
+      rein_insertion_points: []
+    head:
+      _backbone_name: mobilenetv3_small
+      aspp_dilate:
+      - 12
+      - 24
+      - 36
+      aspp_out_channels: 256
+      dropout_ratio: 0.1
+      low_level_channels_project: 48
+      name: deeplabv3plus
+      num_classes: 21
+  training:
+    batch_size: 8
+    epochs: 3
+    gradient_clip: 1.0
+    loss:
+      aux_weight: 0.4
+      name: cross_entropy
+    lr_scheduler:
+      name: poly
+      power: 0.9
+    mixed_precision: true
+    optimizer:
+      lr: 0.01
+      momentum: 0.9
+      name: sgd
+      weight_decay: 0.0001
+device: cuda
+experiment_name: quick_test
+final_epoch: 2
+model_info:
+  backbone_type: MobileNetV3
+  has_aux_head: false
+  head_type: DeepLabV3PlusHead
+  mechanisms: []
+parameters:
+  backbone: 504472
+  head: 5904501
+  total: 6408973
+  trainable: 6408973
+total_epochs: 3

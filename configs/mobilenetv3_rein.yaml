@@ -1,0 +1,30 @@
+# MobileNetV3 + Rein机制实验配置
+experiment_name: mobilenetv3_rein
+
+backbone:
+  name: mobilenetv3_small
+  pretrained: true
+  freeze_bn: false
+  rein_insertion_points: [2, 4, 6]  # 插入点索引
+
+rein:
+  enabled: true
+  mechanism_type: rein
+  insertion_strategy: multi_point
+  parameters:
+    rein_dim: 64
+    num_tokens: 8
+    merge_ratio: 0.5
+
+head:
+  name: fcn_head
+  num_classes: 21
+  dropout_ratio: 0.1
+  feature_enhancement: aspp
+
+training:
+  batch_size: 8
+  learning_rate: 0.01
+  epochs: 100
+  loss_type: cross_entropy
+  optimizer: sgd

@@ -1,0 +1,84 @@
+train_history:
+- accuracy: !!python/object/apply:numpy.core.multiarray.scalar
+  - &id001 !!python/object/apply:numpy.dtype
+    args:
+    - f8
+    - false
+    - true
+    state: !!python/tuple
+    - 3
+    - <
+    - null
+    - null
+    - null
+    - -1
+    - -1
+    - 0
+  - !!binary |
+    q6qqqqpXqD8=
+  cross_entropy_loss: 5.453159213066101
+  learning_rate: 0.01
+  loss: 5.453159213066101
+  miou: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    Bh+OyMmzlj8=
+  total_loss: 5.453159213066101
+- accuracy: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    VVVVVQVtqD8=
+  cross_entropy_loss: 4.05914580821991
+  learning_rate: 0.01
+  loss: 4.05914580821991
+  miou: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    ZRbZ9ZZ9mD8=
+  total_loss: 4.05914580821991
+- accuracy: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    AAAAAOBXqD8=
+  cross_entropy_loss: 3.389423131942749
+  learning_rate: 0.01
+  loss: 3.389423131942749
+  miou: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    ptJt4DhZlz8=
+  total_loss: 3.389423131942749
+val_history:
+- accuracy: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    zczMzMxnqD8=
+  cross_entropy_loss: 3.269065942764282
+  loss: 3.269065942764282
+  miou: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    5cIkitYXiz8=
+  total_loss: 3.269065942764282
+- accuracy: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    MzMzM7NXqD8=
+  cross_entropy_loss: 3.187647428512573
+  loss: 3.187647428512573
+  miou: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    Gi+/gFbbjz8=
+  total_loss: 3.187647428512573
+- accuracy: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    CtejcD13qD8=
+  cross_entropy_loss: 3.0863721656799314
+  loss: 3.0863721656799314
+  miou: !!python/object/apply:numpy.core.multiarray.scalar
+  - *id001
+  - !!binary |
+    Y1xlqjzlkD8=
+  total_loss: 3.0863721656799314

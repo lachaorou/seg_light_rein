@@ -1,0 +1,101 @@
+# MobileViT-XS + OCR Head 创新实验
+experiment_name: mobilevit_xs_ocr_innovative
+
+# 模型配置
+model:
+  backbone:
+    name: mobilevit_xs
+    pretrained: false
+    freeze_bn: false
+    rein_insertion_points: []
+    rein_config: {}
+
+  head:
+    name: ocr
+    num_classes: 21
+    in_channels: 384  # MobileViT-XS final output channels
+    ocr_mid_channels: 256
+    ocr_key_channels: 128
+    dropout_ratio: 0.1
+
+  aux_head:
+    enabled: true  # OCR head自带aux output
+
+# 数据配置
+data:
+  root_dir: "/path/to/voc2012"
+  image_size: [512, 512]
+  ignore_index: 255
+
+# 训练配置
+training:
+  epochs: 80
+  batch_size: 4  # 较小batch适配Vision Transformer + OCR
+
+  optimizer:
+    name: adamw
+    lr: 0.0002
+    weight_decay: 0.01
+    betas: [0.9, 0.999]
+
+  scheduler:
+    name: cosine
+    T_max: 80
+    eta_min: 1e-7
+
+  loss:
+    types: [cross_entropy]
+    weights: [1.0]
+
+  aux_weight: 0.4  # OCR aux loss权重
+
+# 验证配置
+validation:
+  frequency: 1
+  early_stopping:
+    enabled: true
+    patience: 15
+    min_delta: 0.001
+
+# 实验设置
+experiment:
+  save_best_only: true
+  save_frequency: 10
+  log_frequency: 5
+  use_mixed_precision: true
+
+# 评估指标
+metrics:
+  - miou
+  - accuracy
+  - dice
+
+# 注释
+comments: |
+  MobileViT + OCR 创新组合实验：
+
+  技术创新点：
+  1. MobileViT主干：结合CNN局部性和Transformer全局性，在轻量化的同时提升语义理解能力
+  2. OCR分割头：通过对象-上下文表示学习，增强像素级特征与对象级语义的关联
+  3. 混合架构：CNN+ViT主干 + 注意力分割头，实现多层次特征交互
+
+  实验目标：
+  1. 验证Vision Transformer在移动端语义分割的潜力
+  2. 评估OCR机制对细节分割精度的提升效果
+  3. 探索轻量化与高精度的平衡点
+
+  预期性能：
+  - 参数量: ~4-5M (相比传统CNN+ASPP增加约30%)
+  - mIoU: 目标77%+ (VOC2012, 相比baseline提升2-3%)
+  - 推理时间: ~120-150ms (512x512, GPU)
+  - 内存消耗: ~2-3GB (训练时)
+
+  关键优势：
+  - 全局上下文建模能力强
+  - 对象级语义理解精确
+  - 细节边界保持良好
+
+  潜在挑战：
+  - 计算复杂度相对较高
+  - 小目标分割可能不如CNN
+  - 训练收敛可能较慢

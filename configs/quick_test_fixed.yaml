@@ -1,0 +1,55 @@
+# 快速验证实验配置 - 用于验证系统完整性
+experiment:
+  name: "quick_test"
+  description: "快速验证系统功能的小规模实验"
+  tags: ["test", "mobilenetv3", "baseline"]
+
+data:
+  dataset: "voc2012"
+  root: "/nonexistent/path"  # 将使用dummy数据
+  image_size: [256, 256]  # 降低分辨率提升速度
+  batch_size: 8
+  num_workers: 2
+  augmentation:
+    horizontal_flip: true
+    random_scale: [0.8, 1.2]
+    random_crop: true
+
+model:
+  backbone:
+    name: "mobilenetv3_small"
+    pretrained: false
+    output_stride: 16
+
+  head:
+    name: "deeplabv3plus"
+    num_classes: 21
+    dropout_ratio: 0.1
+
+  aux_head:
+    enabled: false
+
+training:
+  optimizer: "adamw"
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  momentum: 0.9
+
+  lr_scheduler: "poly"
+  epochs: 5  # 短时间测试
+
+  loss:
+    type: "cross_entropy"
+    ignore_index: 255
+
+  mixed_precision: true
+  gradient_clip: 1.0
+
+evaluation:
+  eval_interval: 1
+  save_best: true
+  metrics: ["miou", "pixel_accuracy"]
+
+logging:
+  log_interval: 10
+  save_checkpoint_interval: 2

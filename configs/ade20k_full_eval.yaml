@@ -1,0 +1,44 @@
+# 多数据集实验配置 - ADE20K全面评估
+dataset:
+  type: ade20k
+  root_dir: ./datasets/ADE20K
+  split: training
+  image_size: [512, 512]
+  transforms: enhanced
+  batch_size: 16
+  num_workers: 4
+
+model:
+  backbone: mobilenetv3_large
+  head: deeplabv3plus
+  mechanisms: [rein]
+  num_classes: 150
+  pretrained: true
+
+  # Rein机制配置
+  rein_config:
+    insertion_points: [3, 7, 11]
+    rank: 64
+
+training:
+  epochs: 50
+  learning_rate: 0.001
+  optimizer: adamw
+  scheduler: polynomial
+  loss_functions:
+    - name: cross_entropy
+      weight: 0.8
+    - name: dice_loss
+      weight: 0.2
+  mixed_precision: true
+  save_interval: 10
+
+evaluation:
+  metrics: [miou, pixel_accuracy, class_accuracy]
+  save_predictions: true
+  prediction_interval: 10
+
+experiment:
+  name: ade20k_full_eval
+  description: "ADE20K全面评估实验 - 验证模型泛化能力和多类别性能"
+  tags: [full_eval, ade20k, mobilenetv3_large, rein]

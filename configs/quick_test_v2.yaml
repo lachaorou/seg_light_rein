@@ -1,0 +1,60 @@
+# 快速验证实验配置 - 用于验证系统完整性
+experiment_name: quick_test
+
+# 模型配置
+model:
+  backbone:
+    name: mobilenetv3_small
+    pretrained: false
+    freeze_bn: false
+    rein_insertion_points: []  # 不使用Rein机制
+    rein_config: {}
+
+  head:
+    name: deeplabv3plus
+    num_classes: 21
+    dropout_ratio: 0.1
+    aspp_dilate: [12, 24, 36]
+    aspp_out_channels: 256
+    low_level_channels_project: 48
+
+  aux_head:
+    enabled: false
+
+# 数据配置
+data:
+  root_dir: "/nonexistent/path"  # 将使用dummy数据
+  image_size: [256, 256]  # 降低分辨率提升速度
+  ignore_index: 255
+
+# 训练配置
+training:
+  epochs: 3  # 短时间测试
+  batch_size: 8
+
+  optimizer:
+    name: sgd
+    lr: 0.01
+    momentum: 0.9
+    weight_decay: 0.0001
+
+  lr_scheduler:
+    name: poly
+    power: 0.9
+
+  loss:
+    name: cross_entropy
+    aux_weight: 0.4
+
+  mixed_precision: true
+  gradient_clip: 1.0
+
+# 评估配置
+evaluation:
+  eval_interval: 1
+  save_best: true
+
+# 日志配置
+logging:
+  log_interval: 10
+  save_interval: 1

@@ -1,0 +1,60 @@
+data:
+  ignore_index: 255
+  image_size:
+  - 512
+  - 512
+  root_dir: /path/to/voc2012
+experiment_name: mobilenetv3_small_rein_deeplabv3plus
+model:
+  aux_head:
+    enabled: false
+  backbone:
+    freeze_bn: false
+    name: mobilenetv3_small
+    pretrained: false
+    rein_config:
+      activation_types:
+      - relu
+      - sigmoid
+      - tanh
+      - identity
+      learnable_weight: true
+      reduction: 16
+      residual: true
+      temperature: 1.0
+    rein_insertion_points:
+    - features.3
+    - features.6
+    - features.9
+  head:
+    aspp_dilate:
+    - 12
+    - 24
+    - 36
+    aspp_out_channels: 256
+    dropout_ratio: 0.1
+    low_level_channels_project: 48
+    name: deeplabv3plus
+    num_classes: 21
+num_classes: 21
+patience: 10
+save_best_only: true
+training:
+  aux_weight: 0.4
+  batch_size: 8
+  epochs: 100
+  loss:
+    types:
+    - cross_entropy
+    weights:
+    - 1.0
+  optimizer:
+    lr: 0.01
+    momentum: 0.9
+    name: sgd
+    weight_decay: 1e-4
+  scheduler:
+    gamma: 0.1
+    name: step
+    step_size: 30
+  use_amp: true

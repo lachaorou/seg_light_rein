@@ -1,0 +1,27 @@
+2025-06-19 18:19:27 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181926\logs\train.log - INFO - Starting experiment: mobilenetv3_small_rein_deeplabv3plus
+2025-06-19 18:19:27 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181926\logs\train.log - INFO - Experiment directory: ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181926
+2025-06-19 18:19:27 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181926\logs\train.log - INFO - Device: cuda
+2025-06-19 18:19:27 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181926\logs\train.log - INFO - Config saved to: ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181926\configs\config.yaml
+2025-06-19 18:19:27 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181926\logs\train.log - INFO - Creating trainer...
+2025-06-19 18:19:27 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181926\logs\train.log - INFO - Training for 100 epochs (starting from epoch 0)
+2025-06-19 18:19:27 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181926\logs\train.log - INFO - Starting training for 100 epochs
+2025-06-19 18:19:27 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181926\logs\train.log - INFO - Device: cuda
+2025-06-19 18:19:27 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181926\logs\train.log - INFO - Model parameters: 6.41M
+2025-06-19 18:20:07 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181926\logs\train.log - INFO - Epoch 0: Train Loss: 5.0308, Train mIoU: 0.0203, Val Loss: 3.2418, Val mIoU: 0.0110, Time: 40.44s
+2025-06-19 18:20:07 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181926\logs\train.log - INFO - Saved best model with mIoU: 0.0110
+2025-06-19 18:20:48 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181926\logs\train.log - INFO - Epoch 1: Train Loss: 3.6436, Train mIoU: 0.0232, Val Loss: 3.1254, Val mIoU: 0.0196, Time: 40.96s
+2025-06-19 18:20:48 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181926\logs\train.log - INFO - Saved best model with mIoU: 0.0196
+2025-06-19 18:21:26 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181926\logs\train.log - INFO - Epoch 2: Train Loss: 3.2782, Train mIoU: 0.0214, Val Loss: 3.0702, Val mIoU: 0.0162, Time: 38.15s
+2025-06-19 18:22:06 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181926\logs\train.log - INFO - Epoch 3: Train Loss: 3.1982, Train mIoU: 0.0215, Val Loss: 3.0542, Val mIoU: 0.0208, Time: 39.87s
+2025-06-19 18:22:06 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181926\logs\train.log - INFO - Saved best model with mIoU: 0.0208
+2025-06-19 18:22:41 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181926\logs\train.log - INFO - Epoch 4: Train Loss: 3.1754, Train mIoU: 0.0241, Val Loss: 3.0512, Val mIoU: 0.0204, Time: 34.47s
+2025-06-19 18:23:18 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181926\logs\train.log - INFO - Epoch 5: Train Loss: 3.1663, Train mIoU: 0.0242, Val Loss: 3.1496, Val mIoU: 0.0228, Time: 37.59s
+2025-06-19 18:23:19 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181926\logs\train.log - INFO - Saved best model with mIoU: 0.0228
+2025-06-19 18:23:57 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181926\logs\train.log - INFO - Epoch 6: Train Loss: 3.1578, Train mIoU: 0.0240, Val Loss: 3.0682, Val mIoU: 0.0239, Time: 38.26s
+2025-06-19 18:23:57 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181926\logs\train.log - INFO - Saved best model with mIoU: 0.0239
+2025-06-19 18:24:35 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181926\logs\train.log - INFO - Epoch 7: Train Loss: 3.1476, Train mIoU: 0.0233, Val Loss: 3.0484, Val mIoU: 0.0238, Time: 37.76s
+2025-06-19 18:25:13 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181926\logs\train.log - INFO - Epoch 8: Train Loss: 3.1471, Train mIoU: 0.0240, Val Loss: 3.0483, Val mIoU: 0.0240, Time: 37.86s
+2025-06-19 18:25:13 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181926\logs\train.log - INFO - Saved best model with mIoU: 0.0240
+2025-06-19 18:25:52 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181926\logs\train.log - INFO - Epoch 9: Train Loss: 3.1387, Train mIoU: 0.0236, Val Loss: 3.1007, Val mIoU: 0.0239, Time: 39.31s
+2025-06-19 18:26:28 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181926\logs\train.log - INFO - Epoch 10: Train Loss: 3.1303, Train mIoU: 0.0230, Val Loss: 3.0732, Val mIoU: 0.0236, Time: 36.19s
+2025-06-19 18:26:34 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181926\logs\train.log - INFO - Comparison table updated: ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181926\results\comparison_table.md

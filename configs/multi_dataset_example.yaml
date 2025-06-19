@@ -1,0 +1,76 @@
+# 多数据集配置示例
+# 展示不同格式的配置方式
+
+# Quick Test - VOC2012快速验证
+dataset:
+  type: voc2012
+  root_dir: ./datasets/VOC2012
+  split: train
+  image_size: [256, 256]
+  transforms: simple
+
+model:
+  backbone: mobilenetv3_small
+  head: deeplabv3plus
+  mechanisms: []
+  num_classes: 21
+
+training:
+  batch_size: 8
+  learning_rate: 0.01
+  epochs: 10
+  save_interval: 5
+
+experiment:
+  name: quick_test_voc2012
+  description: "VOC2012快速验证实验"
+
+---
+# Full Evaluation - ADE20K全面评估
+dataset:
+  type: ade20k
+  root_dir: ./datasets/ADE20K
+  split: training
+  image_size: [512, 512]
+  transforms: enhanced
+
+model:
+  backbone: mobilenetv3_large
+  head: deeplabv3plus
+  mechanisms: [rein]
+  num_classes: 150
+
+training:
+  batch_size: 16
+  learning_rate: 0.001
+  epochs: 50
+  save_interval: 10
+
+experiment:
+  name: full_eval_ade20k
+  description: "ADE20K全面评估实验"
+
+---
+# Precision Test - Cityscapes高精度测试
+dataset:
+  type: cityscapes
+  root_dir: ./datasets/Cityscapes
+  split: train
+  image_size: [1024, 512]
+  transforms: strong
+
+model:
+  backbone: mobilenetv3_large
+  head: deeplabv3plus
+  mechanisms: [rein]
+  num_classes: 19
+
+training:
+  batch_size: 8
+  learning_rate: 0.0001
+  epochs: 100
+  save_interval: 20
+
+experiment:
+  name: precision_test_cityscapes
+  description: "Cityscapes高精度测试实验"

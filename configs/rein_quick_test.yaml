@@ -1,0 +1,79 @@
+# MobileNetV3-Small + Rein机制 - 快速验证实验
+experiment_name: mobilenetv3_small_rein_quick_test
+
+# 模型配置
+model:
+  backbone:
+    name: mobilenetv3_small
+    pretrained: false
+    freeze_bn: false
+    rein_insertion_points: [3, 4]  # 在stage3和stage4插入Rein
+    rein_config:
+      embed_dim: 256
+      num_heads: 8
+      dropout: 0.1
+
+  head:
+    name: deeplabv3plus
+    num_classes: 21
+    dropout_ratio: 0.1
+    aspp_dilate: [12, 24, 36]
+    aspp_out_channels: 256
+    low_level_channels_project: 48
+
+  aux_head:
+    enabled: false
+
+# 数据配置
+data:
+  root_dir: "/path/to/voc2012"  # dummy数据集
+  image_size: [512, 512]
+  ignore_index: 255
+
+# 训练配置 - 快速测试
+training:
+  epochs: 10  # 仅运行10轮进行验证
+  batch_size: 8
+
+  optimizer:
+    name: sgd
+    lr: 0.01
+    momentum: 0.9
+    weight_decay: 0.0001
+
+  scheduler:
+    name: step
+    step_size: 5
+    gamma: 0.5
+
+  loss:
+    types: [cross_entropy]
+    weights: [1.0]
+
+  aux_weight: 0.4
+
+# 验证配置
+validation:
+  frequency: 2  # 每2轮验证一次
+  early_stopping:
+    enabled: false  # 快速测试不需要早停
+
+# 实验设置
+experiment:
+  save_best_only: true
+  save_frequency: 10
+  log_frequency: 2
+  use_mixed_precision: false  # 快速测试关闭混合精度
+
+# 评估指标
+metrics:
+  - miou
+  - accuracy
+
+# 注释
+comments: |
+  快速验证Rein机制集成是否正常工作
+  dummy数据集，10轮训练，主要验证：
+  1. Rein机制插入无错误
+  2. 训练流程完整
+  3. 相比baseline是否有差异

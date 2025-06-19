@@ -1,0 +1,27 @@
+# MobileNetV3基线实验配置
+experiment_name: mobilenetv3_baseline
+
+backbone:
+  name: mobilenetv3_small
+  pretrained: true
+  freeze_bn: false
+  rein_insertion_points: []
+
+rein:
+  enabled: false
+  mechanism_type: rein
+  insertion_strategy: multi_point
+  parameters: {}
+
+head:
+  name: fcn_head
+  num_classes: 21
+  dropout_ratio: 0.1
+  feature_enhancement: aspp
+
+training:
+  batch_size: 8
+  learning_rate: 0.01
+  epochs: 100
+  loss_type: cross_entropy
+  optimizer: sgd

@@ -1,0 +1,64 @@
+# MobileNetV3-Small + Rein机制 + DeepLabV3+ 实验
+experiment_name: mobilenetv3_small_rein_deeplabv3plus
+
+# 模型配置
+model:
+  backbone:
+    name: mobilenetv3_small
+    pretrained: false
+    freeze_bn: false
+    rein_insertion_points: [
+      "features.3",   # 第一个瓶颈块后
+      "features.6",   # 中间层
+      "features.9"    # 后期层
+    ]
+    rein_config:
+      reduction: 16
+      activation_types: [relu, sigmoid, tanh, identity]
+      learnable_weight: true
+      temperature: 1.0
+      residual: true
+
+  head:
+    name: deeplabv3plus
+    num_classes: 21
+    dropout_ratio: 0.1
+    aspp_dilate: [12, 24, 36]
+    aspp_out_channels: 256
+    low_level_channels_project: 48
+
+  aux_head:
+    enabled: false
+
+# 数据配置
+data:
+  root_dir: "/path/to/voc2012"  # 请修改为实际路径
+  image_size: [512, 512]
+  ignore_index: 255
+
+# 训练配置
+training:
+  epochs: 100
+  batch_size: 8
+  optimizer:
+    name: sgd
+    lr: 0.01
+    momentum: 0.9
+    weight_decay: 0.0001
+
+  scheduler:
+    name: step
+    step_size: 30
+    gamma: 0.1
+
+  loss:
+    types: [cross_entropy]
+    weights: [1.0]
+
+  aux_weight: 0.4
+  use_amp: true
+
+# 其他配置
+num_classes: 21
+save_best_only: true
+patience: 10

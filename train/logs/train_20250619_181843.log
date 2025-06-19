@@ -1,0 +1,16 @@
+2025-06-19 18:18:43 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181843\logs\train.log - INFO - Starting experiment: mobilenetv3_small_rein_deeplabv3plus
+2025-06-19 18:18:43 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181843\logs\train.log - INFO - Experiment directory: ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181843
+2025-06-19 18:18:43 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181843\logs\train.log - INFO - Device: cuda
+2025-06-19 18:18:43 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181843\logs\train.log - INFO - Config saved to: ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181843\configs\config.yaml
+2025-06-19 18:18:43 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181843\logs\train.log - INFO - Creating trainer...
+2025-06-19 18:18:43 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181843\logs\train.log - ERROR - Training failed with error: '<' not supported between instances of 'str' and 'float'
+2025-06-19 18:18:43 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181843\logs\train.log - ERROR - Traceback (most recent call last):
+  File "E:\seg_light_rein\train_complete.py", line 246, in main
+    trainer = create_trainer(config)
+  File "E:\seg_light_rein\training\advanced_trainer.py", line 500, in create_trainer
+    optimizer = torch.optim.SGD(
+  File "E:\App\anaconda\envs\deeplab\lib\site-packages\torch\optim\sgd.py", line 45, in __init__
+    if weight_decay < 0.0:
+TypeError: '<' not supported between instances of 'str' and 'float'
+
+2025-06-19 18:18:43 - ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181843\logs\train.log - INFO - Comparison table updated: ./experiments\mobilenetv3_small_rein_deeplabv3plus_20250619_181843\results\comparison_table.md

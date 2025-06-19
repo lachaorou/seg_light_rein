@@ -1,0 +1,64 @@
+# 服务器高质量训练配置 - MobileNetV3-Small + Rein
+experiment_name: server_mobilenetv3_small_rein_100epochs
+
+# 模型配置
+model:
+  backbone:
+    name: mobilenetv3_small
+    pretrained: false
+    freeze_bn: false
+    rein_insertion_points: [3, 4]  # 在stage3和stage4插入Rein
+    rein_config:
+      embed_dim: 256
+      num_heads: 8
+      dropout: 0.1
+
+  head:
+    name: deeplabv3plus
+    num_classes: 21
+    dropout_ratio: 0.1
+    aspp_dilate: [12, 24, 36]
+    aspp_out_channels: 256
+    low_level_channels_project: 48
+
+  aux_head:
+    enabled: false
+
+# 数据配置
+data:
+  root_dir: "/path/to/voc2012"  # dummy数据集，服务器可替换为真实数据集路径
+  image_size: [512, 512]
+  ignore_index: 255
+
+# 服务器训练配置
+training:
+  epochs: 100  # 长时间训练
+  batch_size: 16  # 服务器可用更大batch size
+
+  optimizer:
+    name: sgd
+    lr: 0.01
+    momentum: 0.9
+    weight_decay: 0.0001
+
+  scheduler:
+    name: cosine
+    T_max: 100
+    eta_min: 0.0001
+
+  loss:
+    types: [cross_entropy]
+    weights: [1.0]
+
+  # 验证配置
+  val_interval: 5  # 每5轮验证一次
+  save_interval: 10  # 每10轮保存一次
+
+  # 混合精度训练
+  use_amp: true
+
+  # 多GPU设置
+  device: "cuda"
+
+  # 日志设置
+  log_interval: 20

@@ -1,0 +1,67 @@
+# 高分辨率训练实验配置
+experiment_name: mobilenetv3_small_highres_training
+
+# 模型配置
+model:
+  backbone:
+    name: mobilenetv3_small
+    pretrained: false
+    freeze_bn: false
+    rein_insertion_points: [
+      "features.3",
+      "features.6"
+    ]
+    rein_config:
+      reduction: 8  # 更小的压缩比
+      activation_types: [relu, sigmoid, swish, identity]
+      learnable_weight: true
+      temperature: 0.5  # 更尖锐的注意力
+      residual: true
+
+  head:
+    name: deeplabv3plus
+    num_classes: 21
+    dropout_ratio: 0.15  # 更高的dropout
+    aspp_dilate: [6, 12, 18, 24]  # 更多尺度
+    aspp_out_channels: 256
+    low_level_channels_project: 48
+
+  aux_head:
+    enabled: true
+    name: deeplabv3
+    num_classes: 21
+    dropout_ratio: 0.1
+
+# 数据配置
+data:
+  root_dir: "/path/to/voc2012"  # 请修改为实际路径
+  image_size: [768, 768]  # 更高分辨率
+  ignore_index: 255
+
+# 训练配置
+training:
+  epochs: 150  # 更多epoch
+  batch_size: 4   # 由于高分辨率，减小batch size
+
+  optimizer:
+    name: adamw  # 使用AdamW
+    lr: 2e-4
+    weight_decay: 1e-2
+    eps: 1e-8
+
+  scheduler:
+    name: cosine
+    T_max: 150
+    eta_min: 1e-6
+
+  loss:
+    types: [cross_entropy, dice]
+    weights: [0.7, 0.3]
+
+  aux_weight: 0.4
+  use_amp: true
+
+# 其他配置
+num_classes: 21
+save_best_only: true
+patience: 20

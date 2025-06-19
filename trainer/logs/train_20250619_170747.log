@@ -1,0 +1,8 @@
+2025-06-19 17:07:47 - seg_light_rein - INFO - Starting training for 2 epochs
+2025-06-19 17:07:47 - seg_light_rein - INFO - Device: cuda
+2025-06-19 17:07:47 - seg_light_rein - INFO - Model parameters: 6.41M
+2025-06-19 17:07:58 - seg_light_rein - INFO - Epoch 0: Train Loss: 4.4845, Train mIoU: 0.0214, Val Loss: 3.0677, Val mIoU: 0.0063, Time: 10.38s
+2025-06-19 17:07:58 - seg_light_rein - INFO - Saved best model with mIoU: 0.0063
+2025-06-19 17:08:09 - seg_light_rein - INFO - Epoch 1: Train Loss: 3.2411, Train mIoU: 0.0242, Val Loss: 3.0915, Val mIoU: 0.0191, Time: 11.28s
+2025-06-19 17:08:09 - seg_light_rein - INFO - Saved best model with mIoU: 0.0191
+2025-06-19 17:08:09 - seg_light_rein - INFO - Training completed. Best mIoU: 0.0191

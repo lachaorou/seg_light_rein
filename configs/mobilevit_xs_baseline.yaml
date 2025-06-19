@@ -1,0 +1,86 @@
+# MobileViT-XS + DeepLabV3+ 实验配置
+experiment_name: mobilevit_xs_deeplabv3plus_baseline
+
+# 模型配置
+model:
+  backbone:
+    name: mobilevit_xs
+    pretrained: false
+    freeze_bn: false
+    rein_insertion_points: []  # 暂不使用Rein机制
+    rein_config: {}
+
+  head:
+    name: deeplabv3plus
+    num_classes: 21
+    dropout_ratio: 0.1
+    aspp_dilate: [12, 24, 36]
+    aspp_out_channels: 256
+    low_level_channels_project: 48
+
+  aux_head:
+    enabled: false
+
+# 数据配置
+data:
+  root_dir: "/path/to/voc2012"  # 请修改为实际路径
+  image_size: [512, 512]
+  ignore_index: 255
+
+# 训练配置
+training:
+  epochs: 50
+  batch_size: 4  # MobileViT内存消耗较大，使用较小batch
+
+  optimizer:
+    name: adamw
+    lr: 0.0001
+    weight_decay: 0.05
+    betas: [0.9, 0.999]
+
+  scheduler:
+    name: cosine
+    T_max: 50
+    eta_min: 1e-6
+
+  loss:
+    types: [cross_entropy]
+    weights: [1.0]
+
+  aux_weight: 0.4
+
+# 验证配置
+validation:
+  frequency: 1
+  early_stopping:
+    enabled: true
+    patience: 10
+    min_delta: 0.001
+
+# 实验设置
+experiment:
+  save_best_only: true
+  save_frequency: 5
+  log_frequency: 10
+  use_mixed_precision: true
+
+# 评估指标
+metrics:
+  - miou
+  - accuracy
+  - dice
+
+# 注释
+comments: |
+  MobileViT-XS作为轻量级Vision Transformer的代表，结合了CNN的局部特征提取能力和Transformer的全局建模能力。
+  相比纯CNN主干，MobileViT在保持较低参数量的同时，能够捕获更丰富的语义信息。
+
+  实验目标：
+  1. 验证MobileViT在语义分割任务上的有效性
+  2. 对比与MobileNetV3等CNN主干的性能差异
+  3. 评估Vision Transformer在移动端部署的可行性
+
+  预期结果：
+  - 参数量: ~3-4M (相比MobileNetV3-Small略高)
+  - mIoU: 期望达到75%+ (VOC2012)
+  - 推理速度: 相比CNN主干略慢，但仍可接受

@@ -1,0 +1,57 @@
+# MobileNetV3-Large + 多损失函数 + DeepLabV3+ 实验
+experiment_name: mobilenetv3_large_multiloss_deeplabv3plus
+
+# 模型配置
+model:
+  backbone:
+    name: mobilenetv3_large
+    pretrained: false
+    freeze_bn: false
+    rein_insertion_points: []
+    rein_config: {}
+
+  head:
+    name: deeplabv3plus
+    num_classes: 21
+    dropout_ratio: 0.1
+    aspp_dilate: [6, 12, 18]  # 不同的膨胀率
+    aspp_out_channels: 256
+    low_level_channels_project: 48
+
+  aux_head:
+    enabled: true
+    name: deeplabv3
+    num_classes: 21
+    dropout_ratio: 0.1
+
+# 数据配置
+data:
+  root_dir: "/path/to/voc2012"  # 请修改为实际路径
+  image_size: [512, 512]
+  ignore_index: 255
+
+# 训练配置
+training:
+  epochs: 100
+  batch_size: 6  # 由于模型更大，减小batch size
+
+  optimizer:
+    name: adam
+    lr: 1e-3
+    weight_decay: 1e-4
+
+  scheduler:
+    name: cosine
+    T_max: 100
+
+  loss:
+    types: [cross_entropy, focal, dice]
+    weights: [0.5, 0.3, 0.2]
+
+  aux_weight: 0.4
+  use_amp: true
+
+# 其他配置
+num_classes: 21
+save_best_only: true
+patience: 15

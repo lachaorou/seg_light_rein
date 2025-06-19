@@ -1,0 +1,14 @@
+2025-06-19 17:18:21 - ./experiments\quick_test_20250619_171821\logs\train.log - INFO - Starting experiment: quick_test
+2025-06-19 17:18:21 - ./experiments\quick_test_20250619_171821\logs\train.log - INFO - Experiment directory: ./experiments\quick_test_20250619_171821
+2025-06-19 17:18:21 - ./experiments\quick_test_20250619_171821\logs\train.log - INFO - Device: cuda
+2025-06-19 17:18:21 - ./experiments\quick_test_20250619_171821\logs\train.log - INFO - Config saved to: ./experiments\quick_test_20250619_171821\configs\config.yaml
+2025-06-19 17:18:21 - ./experiments\quick_test_20250619_171821\logs\train.log - INFO - Creating trainer...
+2025-06-19 17:18:22 - ./experiments\quick_test_20250619_171821\logs\train.log - ERROR - Training failed with error: Unsupported optimizer: adamw
+2025-06-19 17:18:22 - ./experiments\quick_test_20250619_171821\logs\train.log - ERROR - Traceback (most recent call last):
+  File "E:\seg_light_rein\train_complete.py", line 246, in main
+    trainer = create_trainer(config)
+  File "E:\seg_light_rein\training\advanced_trainer.py", line 507, in create_trainer
+    raise ValueError(f"Unsupported optimizer: {optimizer_config['name']}")
+ValueError: Unsupported optimizer: adamw
+
+2025-06-19 17:18:22 - ./experiments\quick_test_20250619_171821\logs\train.log - INFO - Comparison table updated: ./experiments\quick_test_20250619_171821\results\comparison_table.md

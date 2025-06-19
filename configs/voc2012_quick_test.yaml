@@ -1,0 +1,36 @@
+# 多数据集实验配置 - VOC2012快速测试
+dataset:
+  type: voc2012
+  root_dir: ./datasets/VOC2012
+  split: train
+  image_size: [256, 256]
+  transforms: simple
+  batch_size: 8
+  num_workers: 2
+
+model:
+  backbone: mobilenetv3_small
+  head: deeplabv3plus
+  mechanisms: []
+  num_classes: 21
+  pretrained: true
+
+training:
+  epochs: 10
+  learning_rate: 0.01
+  optimizer: adam
+  scheduler: cosine
+  loss_functions:
+    - name: cross_entropy
+      weight: 1.0
+  mixed_precision: true
+  save_interval: 5
+
+evaluation:
+  metrics: [miou, pixel_accuracy]
+  save_predictions: false
+
+experiment:
+  name: voc2012_quick_test
+  description: "VOC2012快速验证实验 - 验证模型架构和训练流程"
+  tags: [quick_test, voc2012, mobilenetv3_small]

@@ -1,0 +1,60 @@
+# MobileNetV3-Small 基线实验 - 快速验证
+experiment_name: mobilenetv3_small_baseline_quick_test
+
+# 模型配置
+model:
+  backbone:
+    name: mobilenetv3_small
+    pretrained: false
+    freeze_bn: false
+    # 不使用Rein机制
+
+  head:
+    name: deeplabv3plus
+    num_classes: 21
+    dropout_ratio: 0.1
+    aspp_dilate: [12, 24, 36]
+    aspp_out_channels: 256
+    low_level_channels_project: 48
+
+  aux_head:
+    enabled: false
+
+# 数据配置
+data:
+  root_dir: "/path/to/voc2012"  # dummy数据集
+  image_size: [512, 512]  # 与Rein实验保持一致
+  ignore_index: 255
+
+# 训练配置 - 快速测试
+training:
+  epochs: 10  # 与Rein实验保持一致
+  batch_size: 8
+
+  optimizer:
+    name: sgd
+    lr: 0.01
+    momentum: 0.9
+    weight_decay: 0.0001
+
+  scheduler:
+    name: step
+    step_size: 5
+    gamma: 0.5
+
+  loss:
+    types: [cross_entropy]
+    weights: [1.0]
+
+  # 验证配置
+  val_interval: 1
+  save_interval: 5
+
+  # 混合精度训练
+  use_amp: true
+
+  # 多GPU设置
+  device: "cuda"
+
+  # 日志设置
+  log_interval: 10
